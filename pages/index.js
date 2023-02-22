@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 // components
 import LeadsTable from "components/Cards/LeadsTable.js";
 import HeaderStats from "components/Headers/HeaderStats";
+import { test } from "services/LeadsService";
 
 // layout for page
 
@@ -13,8 +14,8 @@ import { getLeads } from "services/LeadsService";
 
 export default function Dashboard() {
   const [leads, setLeads] = useState([]);
-
   useEffect(async () => {
+    console.log(await test());
     const res = await getLeads();
     if (res.data) {
       setLeads(res.data);
