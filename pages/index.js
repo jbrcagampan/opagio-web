@@ -16,12 +16,15 @@ export default function Dashboard() {
   const router = useRouter();
   const [leads, setLeads] = useState([]);
   const [studios, setStudios] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const fetchLeads = async () => {
+      setIsLoading(true);
       const res = await getLeads(router.query);
       if (res.data) {
         setLeads(res.data);
       }
+      setIsLoading(false);
     };
     const fetchStudios = async () => {
       const res = await getStudios();
@@ -42,7 +45,7 @@ export default function Dashboard() {
       </div>
       <div className="flex flex-wrap mt-4">
         <div className="w-full mb-12 xl:mb-0 px-4">
-          <LeadsTable leads={leads} />
+          <LeadsTable leads={leads} isLoading={isLoading} />
         </div>
       </div>
     </>

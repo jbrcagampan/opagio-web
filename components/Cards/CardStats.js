@@ -1,6 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+// components
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 export default function CardStats({
   statSubtitle,
   statTitle,
@@ -10,6 +14,7 @@ export default function CardStats({
   statDescripiron,
   statIconName,
   statIconColor,
+  isLoading
 }) {
   return (
     <>
@@ -21,7 +26,7 @@ export default function CardStats({
                 {statSubtitle}
               </h5>
               <span className="font-semibold text-xl text-blueGray-700">
-                {statTitle}
+                {isLoading ? <Skeleton count={1} width={51} /> : statTitle }
               </span>
             </div>
             <div className="relative w-auto pl-4 flex-initial">
@@ -65,6 +70,7 @@ CardStats.defaultProps = {
   statDescripiron: "Since last month",
   statIconName: "far fa-chart-bar",
   statIconColor: "bg-red-500",
+  isLoading: false
 };
 
 CardStats.propTypes = {
@@ -80,4 +86,5 @@ CardStats.propTypes = {
   // can be any of the background color utilities
   // from tailwindcss
   statIconColor: PropTypes.string,
+  isLoading: PropTypes.bool
 };

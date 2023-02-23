@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 import CardStats from "components/Cards/CardStats.js";
 
-export default function HeaderStats({stats}) {
+export default function HeaderStats({stats, isLoading}) {
   return (
     <>
       {/* Header */}
@@ -24,6 +24,7 @@ export default function HeaderStats({stats}) {
                   statDescripiron="Since last month"
                   statIconName="fas fa-user"
                   statIconColor="bg-red-500"
+                  isLoading={isLoading}
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
@@ -36,6 +37,7 @@ export default function HeaderStats({stats}) {
                   statDescripiron="Since last week"
                   statIconName="fas fa-desktop"
                   statIconColor="bg-orange-500"
+                  isLoading={isLoading}
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
@@ -48,6 +50,7 @@ export default function HeaderStats({stats}) {
                   statDescripiron="Since yesterday"
                   statIconName="fas fa-mobile"
                   statIconColor="bg-pink-500"
+                  isLoading={isLoading}
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
@@ -60,6 +63,7 @@ export default function HeaderStats({stats}) {
                   statDescripiron="Since last month"
                   statIconName="fas fa-mobile"
                   statIconColor="bg-lightBlue-500"
+                  isLoading={isLoading}
                 />
               </div>
             </div>
@@ -72,8 +76,10 @@ export default function HeaderStats({stats}) {
 
 HeaderStats.defaultProps = {
   stats: {},
+  isLoading: false
 };
 
 HeaderStats.propTypes = {
-  stats: PropTypes.object
+  stats: PropTypes.object,
+  isLoading: PropTypes.bool
 };
