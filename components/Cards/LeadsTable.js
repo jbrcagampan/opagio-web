@@ -1,6 +1,7 @@
 import React from "react";
+
 import PropTypes from "prop-types";
-import moment from 'moment';
+import moment from "moment";
 
 // components
 
@@ -18,7 +19,7 @@ export default function LeadsTable({ leads }) {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
               <h3 className={"font-semibold text-lg text-blueGray-700"}>
-                Leads
+                Summary
               </h3>
             </div>
           </div>

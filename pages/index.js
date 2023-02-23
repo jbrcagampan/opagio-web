@@ -1,30 +1,45 @@
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 // components
 import LeadsTable from "components/Cards/LeadsTable.js";
-import HeaderStats from "components/Headers/HeaderStats";
-import { test } from "services/LeadsService";
+import LeadsFilter from "components/Cards/LeadsFilter";
 
 // layout for page
 
 import Admin from "layouts/Admin.js";
 
 // services
-import { getLeads } from "services/LeadsService";
+import { getLeads, getStudios } from "services/LeadsService";
 
 export default function Dashboard() {
+  const router = useRouter();
   const [leads, setLeads] = useState([]);
-  useEffect(async () => {
-    console.log(await test());
-    const res = await getLeads();
-    if (res.data) {
-      setLeads(res.data);
-    }
-  }, []);
+  const [studios, setStudios] = useState([]);
+  useEffect(() => {
+    const fetchLeads = async () => {
+      const res = await getLeads(router.query);
+      if (res.data) {
+        setLeads(res.data);
+      }
+    };
+    const fetchStudios = async () => {
+      const res = await getStudios();
+      if (res.data) {
+        setStudios(res.data);
+      }
+    };
+    fetchStudios();
+    fetchLeads();
+  }, [router]);
 
   return (
     <>
-      {/* Header */}
+      <div className="flex flex-wrap mt-4">
+        <div className="w-full mb-12 xl:mb-0 px-4">
+          <LeadsFilter studios={studios} />
+        </div>
+      </div>
       <div className="flex flex-wrap mt-4">
         <div className="w-full mb-12 xl:mb-0 px-4">
           <LeadsTable leads={leads} />
