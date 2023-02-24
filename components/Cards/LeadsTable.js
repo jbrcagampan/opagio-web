@@ -27,6 +27,8 @@ export default function LeadsTable({ leads, isLoading }) {
     const tempData = [...formattedData].splice(0, 10);
     setDataSource(tempData);
     setPageCount(leads.length ? Math.floor(leads.length / 10) + 1 : 0);
+    setSorting({ field: "_id", asc: true });
+    setSelectedPage(0);
   }, [leads]);
 
   const handlePageClick = ({ selected }) => {
@@ -267,6 +269,7 @@ export default function LeadsTable({ leads, isLoading }) {
                     previousLabel="PREVIOUS"
                     renderOnZeroPageCount={null}
                     className="pagination"
+                    forcePage={selectedPage}
                   />
                 </th>
               </tr>
