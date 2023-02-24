@@ -2775,6 +2775,10 @@ select {
   padding-left: 1rem;
 }
 
+.pt-4 {
+  padding-top: 1rem;
+}
+
 .pt-6 {
   padding-top: 1.5rem;
 }
@@ -2837,6 +2841,10 @@ select {
 
 .pb-48 {
   padding-bottom: 12rem;
+}
+
+.pl-64 {
+  padding-left: 16rem;
 }
 
 .pb-64 {
@@ -3842,6 +3850,10 @@ select {
 
   .md\:pt-32 {
     padding-top: 8rem;
+  }
+
+  .md\:pl-64 {
+    padding-left: 16rem;
   }
 
   .md\:fixed {
