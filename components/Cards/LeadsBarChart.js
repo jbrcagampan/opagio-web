@@ -1,36 +1,18 @@
 /* eslint-disable no-loop-func */
 import React, { useEffect, useState } from "react";
-import Chart from "chart.js";
 import PropTypes from "prop-types";
 import moment from "moment";
+
+//Components
+import Chart from "chart.js";
+
+// Utilities
+import { formatDate, subtractDays, subtractMonths, subtractYears } from "utils/Date";
 export default function LeadsBarChart({ leads }) {
   const [filter, setFilter] = useState("Daily");
   const changeFilter = (f) => {
     setFilter(f);
   };
-  const formatDate = (d,returnMonth,returnDay, returnYear) =>  {
-    var mm = new Date(d).getMonth() + 1; // getMonth() is zero-based
-    var dd = new Date(d).getDate();
-    let tempDate = returnMonth ? (mm>9 ? '' : '0') + mm + "/" : '';
-    tempDate += returnDay ? (dd>9 ? '' : '0') + dd + (returnYear ? "/" : '') : '';
-    tempDate += returnYear ? new Date(d).getFullYear(): '';
-    return tempDate;
-  };
-  const subtractDays = (d, days) => {
-    const date = new Date(d);
-    date.setDate(date.getDate() - days);
-    return date;
-  }
-  const subtractYears = (d, years) => {
-    const date = new Date(d);
-    date.setFullYear(date.getFullYear() - years);
-    return date;
-  }
-  const subtractMonths = (d, months) => {
-    const date = new Date(d);
-    date.setMonth(date.getMonth() - months);
-    return date;
-  }
 
   useEffect(() => {
     let labels = [];

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 
 import PropTypes from "prop-types";
-import moment from "moment";
 import { useRouter } from "next/router";
 // components
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import ReactPaginate from "react-paginate";
+
+// utilities
+import { formatDate } from "utils/Date";
 
 export default function LeadsTable({ leads, isLoading }) {
   const router = useRouter();
@@ -267,7 +269,7 @@ export default function LeadsTable({ leads, isLoading }) {
                         {lead.device}
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {moment(lead.date).format("MM-DD-YYYY hh:mm")}
+                        {formatDate(lead.date, true, true, true)}
                       </td>
                     </tr>
                   </>
