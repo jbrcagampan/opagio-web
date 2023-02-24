@@ -27,9 +27,6 @@ export default function LeadsFilter({ studios }) {
       if (router.query.max) {
         setPriceMax(router.query.max);
       }
-      if (router.query.max) {
-        setSearch(router.query.max);
-      }
       if (router.query.studio) {
         setStudio(router.query.studio);
       }
@@ -63,14 +60,12 @@ export default function LeadsFilter({ studios }) {
         if (e.target.value === "" || minVal.test(e.target.value)) {
           setPriceMin(e.target.value);
         }
-
         break;
       case "priceMax":
         const maxVal = /^\d*\.?\d*$/;
         if (e.target.value === "" || maxVal.test(e.target.value)) {
           setPriceMax(e.target.value);
         }
-
         break;
       case "typeOneTime":
         setTypeOneTime(e.target.checked);
