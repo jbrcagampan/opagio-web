@@ -130,7 +130,7 @@ export default function LeadsFilter({ studios }) {
     if (deviceType.length) {
       urlParams.push("device=" + deviceType.join(","));
     }
-    router.push("/" + urlParams.length ? "?" + urlParams.join("&") : "");
+    router.push("/" + (urlParams.length > 0 ? "?" + urlParams.join("&") : ""));
   };
 
   return (

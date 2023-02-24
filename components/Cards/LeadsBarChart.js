@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func */
 import React, { useEffect, useState } from "react";
 import Chart from "chart.js";
 import PropTypes from "prop-types";
@@ -117,7 +118,6 @@ export default function LeadsBarChart({ leads }) {
             new Date(l.date) > new Date(startDate) &&
             new Date(l.date) <= new Date(endDate)
         );
-        console.log(recur);
         recurringData.push(recur.length);
         startDate = startDate.subtract(7, "days");
         endDate = endDate.subtract(7, "days");
