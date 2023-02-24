@@ -22,7 +22,7 @@ export default function LeadsBarChart({ leads }) {
     if (filter === "Daily") {
       let startDate = new Date();
       for (let i = 0; i < 20; i++) {
-        labels.push(formatDate(startDate, true, true, true));
+        labels.push(formatDate(startDate, true, true, true, true));
         const oneTime = leadsOneTime.filter(
           (l) =>
           formatDate(startDate, true, true, true) === formatDate(l.date, true, true, true)
@@ -60,7 +60,7 @@ export default function LeadsBarChart({ leads }) {
     } else if (filter === "Monthly") {
       let startDate = new Date();
       for (let i = 0; i < 20; i++) {
-        labels.push(formatDate(startDate,true,false,true));
+        labels.push(formatDate(startDate,true,false,true, true));
         const oneTime = leadsOneTime.filter(
           (l) =>
           formatDate(startDate, true, false, true) === formatDate(l.date, true, false, true)
@@ -81,7 +81,7 @@ export default function LeadsBarChart({ leads }) {
       let startDate = subtractDays(endDate, 7);
       for (let i = 0; i < 20; i++) {
         labels.push(
-          `${formatDate(startDate, true,true,false)} - ${formatDate(endDate,true,true,false)}`
+          `${formatDate(startDate, true,true,false, true)} - ${formatDate(endDate,true,true,false, true)}`
         );
         const oneTime = leadsOneTime.filter(
           (l) =>

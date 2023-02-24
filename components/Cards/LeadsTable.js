@@ -269,7 +269,7 @@ export default function LeadsTable({ leads, isLoading }) {
                         {lead.device}
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {formatDate(lead.date, true, true, true)}
+                        {formatDate(lead.date, true, true, true, true)}
                       </td>
                     </tr>
                   </>

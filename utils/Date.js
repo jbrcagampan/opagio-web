@@ -1,6 +1,34 @@
-export const formatDate = (d, returnMonth, returnDay, returnYear) => {
+const months = {
+  "01": "Jan",
+  "02": "Feb",
+  "03": "Mar",
+  "04": "Apr",
+  "05": "May",
+  "06": "Jun",
+  "07": "Jul",
+  "08": "Aug",
+  "09": "Sep",
+  10: "Oct",
+  11: "Nov",
+  12: "Dec",
+};
+export const formatDate = (
+  d,
+  returnMonth,
+  returnDay,
+  returnYear,
+  fullMonth
+) => {
   var mm = new Date(d).getMonth() + 1; // getMonth() is zero-based
   var dd = new Date(d).getDate();
+  if (fullMonth) {
+    let tempDate = returnMonth ? months[(mm > 9 ? "" : "0") + mm] + " " : "";
+    tempDate += returnDay
+      ? (dd > 9 ? "" : "0") + dd + (returnYear ? ", " : "")
+      : "";
+    tempDate += returnYear ? new Date(d).getFullYear() : "";
+    return tempDate;
+  }
   let tempDate = returnMonth ? (mm > 9 ? "" : "0") + mm + "/" : "";
   tempDate += returnDay
     ? (dd > 9 ? "" : "0") + dd + (returnYear ? "/" : "")
