@@ -6,10 +6,18 @@
     display: flex;
     list-style: none;
     justify-content:center;
+    align-items: center;
+    justify-items: center;
     gap: 20px;
 }
 
 .pagination .disabled,  .pagination .disabled * {
     cursor: not-allowed !important;
     opacity: 50%;
+}
+
+.pagination li.selected {
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 2px;
 }
