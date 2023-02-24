@@ -23,3 +23,9 @@ export const subtractMonths = (d, months) => {
   date.setMonth(date.getMonth() - months);
   return date;
 };
+export const getNextSunday = (day, weekday) => {
+  const date = new Date(day);
+  const current = new Date(date).getDay();
+  const days = (7 + weekday - current) % 7;
+  return date.setDate(date.getDate() + days);
+};

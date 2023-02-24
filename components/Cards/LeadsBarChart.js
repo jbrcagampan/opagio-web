@@ -1,13 +1,12 @@
 /* eslint-disable no-loop-func */
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import moment from "moment";
 
 //Components
 import Chart from "chart.js";
 
 // Utilities
-import { formatDate, subtractDays, subtractMonths, subtractYears } from "utils/Date";
+import { formatDate, subtractDays, subtractMonths, subtractYears, getNextSunday } from "utils/Date";
 export default function LeadsBarChart({ leads }) {
   const [filter, setFilter] = useState("Daily");
   const changeFilter = (f) => {
@@ -78,13 +77,8 @@ export default function LeadsBarChart({ leads }) {
       oneTimeData = oneTimeData.reverse();
       recurringData = recurringData.reverse();
     } else if (filter === "Weekly") {
-      const getNextSunday = (day, weekday) => {
-        const current = day.day();
-        const days = (7 + weekday - current) % 7;
-        return day.clone().add(days, "d");
-      };
-      let endDate = getNextSunday(moment(), 0);
-      let startDate = getNextSunday(moment(), 0).subtract(7, "days");
+      let endDate = getNextSunday(new Date(), 0);
+      let startDate = subtractDays(endDate, 7);
       for (let i = 0; i < 20; i++) {
         labels.push(
           `${formatDate(startDate, true,true,false)} - ${formatDate(endDate,true,true,false)}`
@@ -101,8 +95,8 @@ export default function LeadsBarChart({ leads }) {
             new Date(l.date) <= new Date(endDate)
         );
         recurringData.push(recur.length);
-        startDate = startDate.subtract(7, "days");
-        endDate = endDate.subtract(7, "days");
+        startDate = subtractDays(startDate, 7);
+        endDate = subtractDays(endDate, 7);
       }
       labels = labels.reverse();
       oneTimeData = oneTimeData.reverse();
