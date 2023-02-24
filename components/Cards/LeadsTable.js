@@ -85,10 +85,13 @@ export default function LeadsTable({ leads, isLoading }) {
       >
         <div className="rounded-t mb-0 px-4 py-3 border-0">
           <div className="flex flex-wrap items-center">
-            <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-              <h3 className={"font-semibold text-lg text-blueGray-700"}>
+            <div className="relative w-full max-w-full flex-grow flex-1">
+              <h6 className="uppercase text-blueGray-400 mb-1 text-xs font-semibold">
+                Purchases
+              </h6>
+              <h2 className="text-blueGray-700 text-xl font-semibold">
                 Summary
-              </h3>
+              </h2>
             </div>
           </div>
         </div>
@@ -244,6 +247,7 @@ export default function LeadsTable({ leads, isLoading }) {
                         £{(Math.round(lead.price * 100) / 100).toFixed(2)}
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                
                         {!lead.recur && (
                           <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-emerald-600 bg-emerald-200 uppercase last:mr-0 mr-1">
                             O

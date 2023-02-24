@@ -38,7 +38,6 @@ export default function LeadsFilter({ studios }) {
       }
       if (router.query.device) {
         const selectedDevices = router.query.device.split(",");
-        console.log(selectedDevices);
         setDeviceWeb(selectedDevices.indexOf("Web") > -1);
         setDeviceIphone(selectedDevices.indexOf("iPhone") > -1);
         setDeviceAndroid(selectedDevices.indexOf("Android") > -1);

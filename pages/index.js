@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 // components
 import LeadsTable from "components/Cards/LeadsTable.js";
 import LeadsFilter from "components/Cards/LeadsFilter";
+import LeadsBarChart from "components/Cards/LeadsBarChart";
 
 // layout for page
 
@@ -38,6 +39,11 @@ export default function Dashboard() {
       <div className="flex flex-wrap mt-4">
         <div className="w-full mb-12 xl:mb-0 px-4">
           <LeadsFilter studios={studios} />
+        </div>
+      </div>
+      <div className="flex flex-wrap mt-4">
+        <div className="w-full mb-12 xl:mb-0 px-4">
+          <LeadsBarChart leads={leads} />
         </div>
       </div>
       <div className="flex flex-wrap mt-4">
