@@ -259,11 +259,11 @@ export default function LeadsTable({ leads, isLoading }) {
                 >
                   <ReactPaginate
                     breakLabel="..."
-                    nextLabel=">"
+                    nextLabel="NEXT"
                     onPageChange={handlePageClick}
                     pageRangeDisplayed={4}
                     pageCount={pageCount}
-                    previousLabel="<"
+                    previousLabel="PREVIOUS"
                     renderOnZeroPageCount={null}
                     className="pagination"
                   />
