@@ -2,13 +2,35 @@ import React, { useEffect, useState } from "react";
 import Chart from "chart.js";
 import PropTypes from "prop-types";
 import moment from "moment";
-
 export default function LeadsBarChart({ leads }) {
   const [filter, setFilter] = useState("Daily");
   const changeFilter = (f) => {
     setFilter(f);
   };
-  let leadsChart;
+  const formatDate = (d,returnMonth,returnDay, returnYear) =>  {
+    var mm = new Date(d).getMonth() + 1; // getMonth() is zero-based
+    var dd = new Date(d).getDate();
+    let tempDate = returnMonth ? (mm>9 ? '' : '0') + mm + "/" : '';
+    tempDate += returnDay ? (dd>9 ? '' : '0') + dd + (returnYear ? "/" : '') : '';
+    tempDate += returnYear ? new Date(d).getFullYear(): '';
+    return tempDate;
+  };
+  const subtractDays = (d, days) => {
+    const date = new Date(d);
+    date.setDate(date.getDate() - days);
+    return date;
+  }
+  const subtractYears = (d, years) => {
+    const date = new Date(d);
+    date.setFullYear(date.getFullYear() - years);
+    return date;
+  }
+  const subtractMonths = (d, months) => {
+    const date = new Date(d);
+    date.setMonth(date.getMonth() - months);
+    return date;
+  }
+
   useEffect(() => {
     let labels = [];
     let oneTimeData = [];
@@ -16,58 +38,58 @@ export default function LeadsBarChart({ leads }) {
     const leadsOneTime = leads.filter((l) => l.recur === false);
     const leadsRecur = leads.filter((l) => l.recur === true);
     if (filter === "Daily") {
-      let startDate = moment();
+      let startDate = new Date();
       for (let i = 0; i < 20; i++) {
-        labels.push(startDate.format("MMM DD, YYYY"));
+        labels.push(formatDate(startDate, true, true, true));
         const oneTime = leadsOneTime.filter(
           (l) =>
-            startDate.format("MMM DD, YYYY") ===
-            moment(l.date).format("MMM DD, YYYY")
+          formatDate(startDate, true, true, true) === formatDate(l.date, true, true, true)
         );
         oneTimeData.push(oneTime.length);
         const recur = leadsRecur.filter(
           (l) =>
-            startDate.format("MMM DD, YYYY") ===
-            moment(l.date).format("MMM DD, YYYY")
+          formatDate(startDate, true, true, true) === formatDate(l.date, true, true, true)
         );
         recurringData.push(recur.length);
-        startDate = startDate.subtract(1, "days");
+        startDate = subtractDays(startDate, 1);
       }
       labels = labels.reverse();
       oneTimeData = oneTimeData.reverse();
       recurringData = recurringData.reverse();
     } else if (filter === "Yearly") {
-      let startDate = moment();
+      let startDate = new Date();
       for (let i = 0; i < 20; i++) {
-        labels.push(startDate.format("YYYY"));
+        labels.push(formatDate(startDate,false,false,true));
         const oneTime = leadsOneTime.filter(
-          (l) => startDate.format("YYYY") === moment(l.date).format("YYYY")
+          (l) =>
+          formatDate(startDate, false, false, true) === formatDate(l.date, false, false, true)
         );
         oneTimeData.push(oneTime.length);
         const recur = leadsRecur.filter(
-          (l) => startDate.format("YYYY") === moment(l.date).format("YYYY")
+          (l) =>
+          formatDate(startDate, false, false, true) === formatDate(l.date, false, false, true)
         );
         recurringData.push(recur.length);
-        startDate = startDate.subtract(1, "years");
+        startDate = subtractYears(startDate, 1);
       }
       labels = labels.reverse();
       oneTimeData = oneTimeData.reverse();
       recurringData = recurringData.reverse();
     } else if (filter === "Monthly") {
-      let startDate = moment();
+      let startDate = new Date();
       for (let i = 0; i < 20; i++) {
-        labels.push(startDate.format("MMM YYYY"));
+        labels.push(formatDate(startDate,true,false,true));
         const oneTime = leadsOneTime.filter(
           (l) =>
-            startDate.format("MMM YYYY") === moment(l.date).format("MMM YYYY")
+          formatDate(startDate, true, false, true) === formatDate(l.date, true, false, true)
         );
         oneTimeData.push(oneTime.length);
         const recur = leadsRecur.filter(
           (l) =>
-            startDate.format("MMM YYYY") === moment(l.date).format("MMM YYYY")
+          formatDate(startDate, true, false, true) === formatDate(l.date, true, false, true)
         );
         recurringData.push(recur.length);
-        startDate = startDate.subtract(1, "months");
+        startDate = subtractMonths(startDate, 1);
       }
       labels = labels.reverse();
       oneTimeData = oneTimeData.reverse();
@@ -82,7 +104,7 @@ export default function LeadsBarChart({ leads }) {
       let startDate = getNextSunday(moment(), 0).subtract(7, "days");
       for (let i = 0; i < 20; i++) {
         labels.push(
-          `${startDate.format("MMM DD")} - ${endDate.format("MMM DD")}`
+          `${formatDate(startDate, true,true,false)} - ${formatDate(endDate,true,true,false)}`
         );
         const oneTime = leadsOneTime.filter(
           (l) =>
