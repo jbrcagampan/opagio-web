@@ -2089,6 +2089,10 @@ select {
   height: 600px;
 }
 
+.w-25-px {
+  width: 25px;
+}
+
 .text-55 {
   font-size: 55rem;
 }

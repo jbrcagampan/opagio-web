@@ -229,9 +229,8 @@ export default function LeadsFilter({ studios }) {
                   type="checkbox"
                   className="mr-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline "
                 />
-                <div className="mr-1 text-md text-blueGray-700">1 Time</div>
                 <span className="mr-3 text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-emerald-600 bg-emerald-200 uppercase last:mr-0 mr-1">
-                  O
+                  One Time
                 </span>
                 <input
                   name="typeRecurring"
@@ -241,9 +240,8 @@ export default function LeadsFilter({ studios }) {
                   type="checkbox"
                   className="mr-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline "
                 />
-                <div className="mr-1 text-md text-blueGray-700">Recurring</div>
                 <span className="mr-3 text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-lightBlue-600 bg-lightBlue-200 uppercase last:mr-0 mr-1">
-                  R
+                  Recurring
                 </span>
                 <input
                   name="typeInvite"
@@ -253,11 +251,8 @@ export default function LeadsFilter({ studios }) {
                   type="checkbox"
                   className="mr-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline "
                 />
-                <div className="mr-1 text-md text-blueGray-700">
-                  Invite a Friend
-                </div>
                 <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-purple-600 bg-purple-200 uppercase last:mr-0 mr-1">
-                  F
+                  Invite a Friend
                 </span>
               </div>
             </div>
