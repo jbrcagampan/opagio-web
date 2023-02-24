@@ -17,37 +17,37 @@ export default function LeadsFilter({ studios }) {
   const [deviceAndroid, setDeviceAndroid] = useState(false);
 
   useEffect(() => {
-    if(router.query) {
-      if(router.query.search) {
+    if (router.query) {
+      if (router.query.search) {
         setSearch(router.query.search);
       }
-      if(router.query.min) {
+      if (router.query.min) {
         setPriceMin(router.query.min);
       }
-      if(router.query.max) {
+      if (router.query.max) {
         setPriceMax(router.query.max);
       }
-      if(router.query.max) {
+      if (router.query.max) {
         setSearch(router.query.max);
       }
-      if(router.query.studio) {
+      if (router.query.studio) {
         setStudio(router.query.studio);
       }
-      if(router.query.type) {
-        const selectedTypes = router.query.type.split(',');
-        setTypeOneTime(selectedTypes.indexOf('oneTime') > -1);
-        setTypeRecurring(selectedTypes.indexOf('recurring') > -1);
-        setTypeInvite(selectedTypes.indexOf('invite') > -1);
+      if (router.query.type) {
+        const selectedTypes = router.query.type.split(",");
+        setTypeOneTime(selectedTypes.indexOf("oneTime") > -1);
+        setTypeRecurring(selectedTypes.indexOf("recurring") > -1);
+        setTypeInvite(selectedTypes.indexOf("invite") > -1);
       }
-      if(router.query.device) {
-        const selectedDevices = router.query.device.split(',');
+      if (router.query.device) {
+        const selectedDevices = router.query.device.split(",");
         console.log(selectedDevices);
-        setDeviceWeb(selectedDevices.indexOf('Web') > -1);
-        setDeviceIphone(selectedDevices.indexOf('iPhone') > -1);
-        setDeviceAndroid(selectedDevices.indexOf('Android') > -1);
+        setDeviceWeb(selectedDevices.indexOf("Web") > -1);
+        setDeviceIphone(selectedDevices.indexOf("iPhone") > -1);
+        setDeviceAndroid(selectedDevices.indexOf("Android") > -1);
       }
     }
-  }, [router, studios])
+  }, [router, studios]);
 
   const handleChange = (e) => {
     const inputName = e.target.name;
@@ -59,10 +59,18 @@ export default function LeadsFilter({ studios }) {
         setStudio(e.target.value);
         break;
       case "priceMin":
-        setPriceMin(e.target.value);
+        const minVal = /^\d*\.?\d*$/;
+        if (e.target.value === "" || minVal.test(e.target.value)) {
+          setPriceMin(e.target.value);
+        }
+
         break;
       case "priceMax":
-        setPriceMax(e.target.value);
+        const maxVal = /^\d*\.?\d*$/;
+        if (e.target.value === "" || maxVal.test(e.target.value)) {
+          setPriceMax(e.target.value);
+        }
+
         break;
       case "typeOneTime":
         setTypeOneTime(e.target.checked);
@@ -110,25 +118,25 @@ export default function LeadsFilter({ studios }) {
       deviceType.push("Android");
     }
     let urlParams = [];
-    if(search) {
-      urlParams.push('search='+search);
+    if (search) {
+      urlParams.push("search=" + search);
     }
-    if(studio) {
-      urlParams.push('studio='+studio);
+    if (studio) {
+      urlParams.push("studio=" + studio);
     }
-    if(priceMin) {
-      urlParams.push('min='+priceMin);
+    if (priceMin) {
+      urlParams.push("min=" + priceMin);
     }
-    if(priceMax) {
-      urlParams.push('max='+priceMax);
+    if (priceMax) {
+      urlParams.push("max=" + priceMax);
     }
-    if(purchaseType.length) {
-      urlParams.push('type='+purchaseType.join(","));
+    if (purchaseType.length) {
+      urlParams.push("type=" + purchaseType.join(","));
     }
-    if(deviceType.length) {
-      urlParams.push('device='+deviceType.join(","));
+    if (deviceType.length) {
+      urlParams.push("device=" + deviceType.join(","));
     }
-    router.push("/" + urlParams.length ? '?'+urlParams.join('&') : '');
+    router.push("/" + urlParams.length ? "?" + urlParams.join("&") : "");
   };
 
   return (
