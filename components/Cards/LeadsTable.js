@@ -107,8 +107,8 @@ export default function LeadsTable({ leads, isLoading }) {
                   <i
                     className={
                       sorting.field === "studio" && sorting.asc === true
-                      ? "fas fa-arrow-up"
-                      : "fas fa-arrow-down"
+                        ? "fas fa-arrow-up"
+                        : "fas fa-arrow-down"
                     }
                   ></i>
                 </th>
@@ -137,10 +137,17 @@ export default function LeadsTable({ leads, isLoading }) {
                   <i
                     className={
                       sorting.field === "description" && sorting.asc === true
-                      ? "fas fa-arrow-up"
-                      : "fas fa-arrow-down"
+                        ? "fas fa-arrow-up"
+                        : "fas fa-arrow-down"
                     }
                   ></i>
+                </th>
+                <th
+                  className={
+                    "cursor-pointer px-6 align-middle text-center border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                  }
+                >
+                  Purchase Type
                 </th>
                 <th
                   className={
@@ -152,8 +159,8 @@ export default function LeadsTable({ leads, isLoading }) {
                   <i
                     className={
                       sorting.field === "price" && sorting.asc === true
-                      ? "fas fa-arrow-up"
-                      : "fas fa-arrow-down"
+                        ? "fas fa-arrow-up"
+                        : "fas fa-arrow-down"
                     }
                   ></i>
                 </th>
@@ -167,8 +174,8 @@ export default function LeadsTable({ leads, isLoading }) {
                   <i
                     className={
                       sorting.field === "device" && sorting.asc === true
-                      ? "fas fa-arrow-up"
-                      : "fas fa-arrow-down"
+                        ? "fas fa-arrow-up"
+                        : "fas fa-arrow-down"
                     }
                   ></i>
                 </th>
@@ -182,8 +189,8 @@ export default function LeadsTable({ leads, isLoading }) {
                   <i
                     className={
                       sorting.field === "date" && sorting.asc === true
-                      ? "fas fa-arrow-up"
-                      : "fas fa-arrow-down"
+                        ? "fas fa-arrow-up"
+                        : "fas fa-arrow-down"
                     }
                   ></i>
                 </th>
@@ -194,6 +201,9 @@ export default function LeadsTable({ leads, isLoading }) {
                 Array.from(Array(10).keys()).map((i) => (
                   <>
                     <tr key={i}>
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <Skeleton count={1} />
+                      </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                         <Skeleton count={1} />
                       </td>
@@ -220,10 +230,31 @@ export default function LeadsTable({ leads, isLoading }) {
                         {lead.studio}
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {`${lead.last_name ? lead.last_name + ', ' : ''} ${lead.first_name ? lead.first_name : ''}`}
+                        {`${lead.last_name ? lead.last_name + ", " : ""} ${
+                          lead.first_name ? lead.first_name : ""
+                        }`}
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                         {lead.description}
+                      </td>
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <div className="flex items-center justify-center">
+                          {!lead.recur && (
+                            <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-emerald-600 bg-emerald-200 uppercase last:mr-0 mr-1">
+                              O
+                            </span>
+                          )}
+                          {lead.recur && (
+                            <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-lightBlue-600 bg-lightBlue-200 uppercase last:mr-0 mr-1">
+                              R
+                            </span>
+                          )}
+                          {lead.invite_a_friend && (
+                            <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-purple-600 bg-purple-200 uppercase last:mr-0 mr-1">
+                              F
+                            </span>
+                          )}
+                        </div>
                       </td>
                       <td className="border-t-0 px-6 align-middle text-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                         £{(Math.round(lead.price * 100) / 100).toFixed(2)}
@@ -242,7 +273,7 @@ export default function LeadsTable({ leads, isLoading }) {
                   <tr>
                     <td
                       className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                      colSpan={6}
+                      colSpan={7}
                     >
                       {router.query
                         ? "We couldn't find any matches. Try another Search."
@@ -255,7 +286,7 @@ export default function LeadsTable({ leads, isLoading }) {
             <tfoot>
               <tr>
                 <th
-                  colSpan={6}
+                  colSpan={7}
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"
                   }
