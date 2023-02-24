@@ -14,7 +14,9 @@ export default function LeadsTable({ leads, isLoading }) {
   const [dataSource, setDataSource] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [selectedPage, setSelectedPage] = useState(0);
-  const [sorting, setSorting] = useState({ field: "name", asc: true });
+  const [sorting, setSorting] = useState({ field: "_id", asc: true });
+
+  const sortFields = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
 
   useEffect(() => {
     const formattedData = leads.map((l, i) => ({
@@ -42,7 +44,6 @@ export default function LeadsTable({ leads, isLoading }) {
       setSorting({ field, asc: true });
     }
     let tempData = [...formattedLeads];
-    const sortFields = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
     switch (field) {
       case "studio":
       case "description":
@@ -104,8 +105,8 @@ export default function LeadsTable({ leads, isLoading }) {
                   <i
                     className={
                       sorting.field === "studio" && sorting.asc === true
-                        ? "fas fa-arrow-down"
-                        : "fas fa-arrow-up"
+                      ? "fas fa-arrow-up"
+                      : "fas fa-arrow-down"
                     }
                   ></i>
                 </th>
@@ -119,8 +120,8 @@ export default function LeadsTable({ leads, isLoading }) {
                   <i
                     className={
                       sorting.field === "name" && sorting.asc === true
-                        ? "fas fa-arrow-down"
-                        : "fas fa-arrow-up"
+                        ? "fas fa-arrow-up"
+                        : "fas fa-arrow-down"
                     }
                   ></i>
                 </th>
@@ -134,8 +135,8 @@ export default function LeadsTable({ leads, isLoading }) {
                   <i
                     className={
                       sorting.field === "description" && sorting.asc === true
-                        ? "fas fa-arrow-down"
-                        : "fas fa-arrow-up"
+                      ? "fas fa-arrow-up"
+                      : "fas fa-arrow-down"
                     }
                   ></i>
                 </th>
@@ -149,8 +150,8 @@ export default function LeadsTable({ leads, isLoading }) {
                   <i
                     className={
                       sorting.field === "price" && sorting.asc === true
-                        ? "fas fa-arrow-down"
-                        : "fas fa-arrow-up"
+                      ? "fas fa-arrow-up"
+                      : "fas fa-arrow-down"
                     }
                   ></i>
                 </th>
@@ -164,8 +165,8 @@ export default function LeadsTable({ leads, isLoading }) {
                   <i
                     className={
                       sorting.field === "device" && sorting.asc === true
-                        ? "fas fa-arrow-down"
-                        : "fas fa-arrow-up"
+                      ? "fas fa-arrow-up"
+                      : "fas fa-arrow-down"
                     }
                   ></i>
                 </th>
@@ -179,8 +180,8 @@ export default function LeadsTable({ leads, isLoading }) {
                   <i
                     className={
                       sorting.field === "date" && sorting.asc === true
-                        ? "fas fa-arrow-down"
-                        : "fas fa-arrow-up"
+                      ? "fas fa-arrow-up"
+                      : "fas fa-arrow-down"
                     }
                   ></i>
                 </th>
