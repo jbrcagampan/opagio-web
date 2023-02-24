@@ -247,7 +247,6 @@ export default function LeadsTable({ leads, isLoading }) {
                         £{(Math.round(lead.price * 100) / 100).toFixed(2)}
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                
                         {!lead.recur && (
                           <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-emerald-600 bg-emerald-200 uppercase last:mr-0 mr-1">
                             O
@@ -296,17 +295,22 @@ export default function LeadsTable({ leads, isLoading }) {
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"
                   }
                 >
-                  <ReactPaginate
-                    breakLabel="..."
-                    nextLabel="NEXT"
-                    onPageChange={handlePageClick}
-                    pageRangeDisplayed={4}
-                    pageCount={pageCount}
-                    previousLabel="PREVIOUS"
-                    renderOnZeroPageCount={null}
-                    className="pagination"
-                    forcePage={selectedPage}
-                  />
+                  <div className="flex">
+                    {leads.length > 0 && <div className="flex-1">
+                      {`Showing results ${(selectedPage*10)+1} to ${(selectedPage*10)+10 <= leads.length ? (selectedPage*10)+10 : leads.length} of ${leads.length}`}
+                    </div>}
+                    <ReactPaginate
+                      breakLabel="..."
+                      nextLabel="NEXT"
+                      onPageChange={handlePageClick}
+                      pageRangeDisplayed={4}
+                      pageCount={pageCount}
+                      previousLabel="PREVIOUS"
+                      renderOnZeroPageCount={null}
+                      className="pagination flex-1"
+                      forcePage={selectedPage}
+                    />
+                  </div>
                 </th>
               </tr>
             </tfoot>
