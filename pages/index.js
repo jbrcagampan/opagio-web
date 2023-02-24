@@ -17,20 +17,17 @@ export default function Dashboard() {
   const [leads, setLeads] = useState([]);
   const [studios, setStudios] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     const fetchLeads = async () => {
       setIsLoading(true);
       const res = await getLeads(router.query);
-      if (res.data) {
-        setLeads(res.data);
-      }
+      setLeads(res.data);
       setIsLoading(false);
     };
     const fetchStudios = async () => {
       const res = await getStudios();
-      if (res.data) {
-        setStudios(res.data);
-      }
+      setStudios(res.data);
     };
     fetchStudios();
     fetchLeads();
