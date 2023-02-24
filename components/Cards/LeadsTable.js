@@ -220,7 +220,7 @@ export default function LeadsTable({ leads, isLoading }) {
                         {lead.studio}
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {`${lead.last_name}, ${lead.first_name}`}
+                        {`${lead.last_name ? lead.last_name + ', ' : ''} ${lead.first_name ? lead.first_name : ''}`}
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                         {lead.description}
